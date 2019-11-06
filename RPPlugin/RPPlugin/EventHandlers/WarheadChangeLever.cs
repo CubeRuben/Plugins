@@ -16,6 +16,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnChangeLever(WarheadChangeLeverEvent ev)
         {
+            //Запрет на выключение боеголовки SCP
             switch (ev.Player.TeamRole.Role)
             {
                 case Role.SCP_173:

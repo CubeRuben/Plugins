@@ -1,4 +1,6 @@
-﻿/*using Smod2;
+﻿//Шаблон для EventHandler-тд и тп
+
+/*using Smod2;
 using Smod2.EventHandlers;
 using Smod2.Events;
 

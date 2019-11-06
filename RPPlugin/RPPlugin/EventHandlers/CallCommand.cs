@@ -21,6 +21,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnCallCommand(PlayerCallCommandEvent ev)
         {
+            //Обработка комманд в консоли
             switch (ev.Command.Split(' ')[0])
             {
                 case "recallmtf":

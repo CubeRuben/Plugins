@@ -19,6 +19,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnFixedUpdate(FixedUpdateEvent ev)
         {
+            //Получение урона кровотечения и гниения в 30 тиков
             if (this.plugin.tick < 30)
             {
                 this.plugin.tick++;
@@ -56,6 +57,7 @@ namespace RPPlugin.EventHandlers
                 }
             }
 
+            //Изменение положения трупов
             for (int i = 0; i < this.plugin.pickedUpRagdolls.Count; i++)
             {
                 Player player = this.plugin.Server.GetPlayer(this.plugin.pickedUpRagdolls[i].playerId);

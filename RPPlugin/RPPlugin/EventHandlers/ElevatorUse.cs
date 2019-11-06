@@ -18,6 +18,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnElevatorUse(PlayerElevatorUseEvent ev)
         {
+            //Блокировка лифтов
             if (ev.Player.GetCurrentItem().ItemType == ItemType.MTF_COMMANDER_KEYCARD)
             {
                 if (ev.Elevator.ElevatorType == ElevatorType.GateA)
