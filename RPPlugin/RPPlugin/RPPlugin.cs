@@ -15,29 +15,41 @@ namespace RPPlugin
     {
         //public int SCP106CanTeleportToPlayer = 0;
 
+        //Счётчик тиков для для FixedUpdate
         public int tick = 0;
 
+        //Массив имён для игроков
         public readonly string[] playersNames = { "Иванов",  "Смирнов", "Кузнецов", "Попов", "Васильев", "Петров", "Соколов", "Михайлов", "Новиков", "Федоров", "Морозов", "Волков", "Алексеев", "Лебедев", "Семенов", "Егоров", "Павлов", "Козлов", "Степанов", "Николаев", "Орлов", "Андреев", "Макаронов", "Никитин", "Захаров", "Зайцев", "Соловьев", "Борисов", "Яковлев", "Григорьев", "Романов", "Воробьев", "Сергеев", "Кузьмин", "Фролов", "Александров", "Дмитриев", "Королев", "Гусёв", "Киселев", "Ильин", "Максимов", "Поляков", "Сорокин", "Виноградов", "Ковалёв", "Белов", "Медведев", "Антонов", "Тарасов" };
 
+        //Объект рандома
         public System.Random random = new System.Random();
 
+        //Массив заблокированных лифтов
         public ElevatorsLockdown elevatorsLockdown = new ElevatorsLockdown();
 
         //public Item itemForRequestOfMtf;
 
+        //Комната деда
         public Room scp106Room;
 
+        //Для спавна МОГа
         public bool allowRespawnMTF = false;
 
+        //Массив игроков, которые признаны на уничтожение
         public List<int> idPlayersForTermination = new List<int>();
 
+        //Массив игроков с кровотечением
         public List<int> bleedingPlayers = new List<int>();
 
+        //Массив игроков с гниением
         public List<int> rottingPlayers = new List<int>();
 
+        //Положение зоны вызова МОГа в интеркоме
         public Vector intercom;
 
+        //Поднятые трупы
         public List<PickedUpRagdoll> pickedUpRagdolls = new List<PickedUpRagdoll>();
+
         public override void OnEnable()
         {
             this.Info($"{this.Details.name} has loaded");
@@ -57,6 +69,7 @@ namespace RPPlugin
             RegCommands();
         }
 
+        //Метод регистрации Handler-ов
         void RegEventHandlers()
         {
             this.AddEventHandler(typeof(IEventHandlerCallCommand), new EventHandlers.CallCommand(this));
@@ -98,6 +111,7 @@ namespace RPPlugin
             //this.AddEventHandler(typeof(IEventHandlerBan), new EventHandlers.Ban(this));
         }
 
+        //Метод регистрации комманд
         void RegCommands()
         {
             //this.AddCommand("SKIPEVENT", new Commands.SkipEvent(this));
@@ -106,6 +120,7 @@ namespace RPPlugin
         
     }
 
+    //Класс с фуекциями
     class Func
     {
         public static bool RotVec(Vector a, Vector b)
@@ -121,6 +136,7 @@ namespace RPPlugin
         }
     }
    
+    //Класс лифтов
     public class ElevatorsLockdown
     {
         public bool elevatorA;
@@ -133,6 +149,7 @@ namespace RPPlugin
         }
     }
 
+    //Класс с трупом и игроком, который несёт труп
     public class PickedUpRagdoll
     {
         public PickedUpRagdoll(int pid, Ragdoll rid)

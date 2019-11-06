@@ -160,8 +160,7 @@ namespace RPPlugin.EventHandlers
                     }
                     break;*/
                 /*case "test":
-                    GameObject player = (GameObject)ev.Player.GetGameObject();
-                    this.plugin.Info(player.GetComponent<Transform>().rotation.eulerAngles.ToString());
+                    GameObject.FindObjectOfType<ConfigFile>
                     break;*/
             }
         }
