@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3900BF7-EA00-46C6-9F35-F2F04BC5975D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PPlugin</RootNamespace>
+    <AssemblyName>PPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Smod2">
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Smod2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes.cs" />
+    <Compile Include="Commands\ClearRank.cs" />
+    <Compile Include="Commands\SkipEvent.cs" />
+    <Compile Include="Commands\Tesla.cs" />
+    <Compile Include="Commands\SetRank.cs" />
+    <Compile Include="Commands\BroadcastSCPDeath.cs" />
+    <Compile Include="EventHandlers\PlayerPickupItem.cs" />
+    <Compile Include="EventHandlers\Ban.cs" />
+    <Compile Include="EventHandlers\SCP914Activate.cs" />
+    <Compile Include="EventHandlers\ScpDeathAnnouncement.cs" />
+    <Compile Include="EventHandlers\NicknameSet.cs" />
+    <Compile Include="EventHandlers\TeamRespawn.cs" />
+    <Compile Include="EventHandlers\CheckRoundEnd.cs" />
+    <Compile Include="EventHandlers\ElevatorUse.cs" />
+    <Compile Include="EventHandlers\DoorAccess.cs" />
+    <Compile Include="EventHandlers\CallCommand.cs" />
+    <Compile Include="EventHandlers\PlayerDie.cs" />
+    <Compile Include="EventHandlers\PlayerDropItem.cs" />
+    <Compile Include="EventHandlers\PlayerHurt.cs" />
+    <Compile Include="EventHandlers\PlayerJoin.cs" />
+    <Compile Include="EventHandlers\SetRole.cs" />
+    <Compile Include="EventHandlers\CheckEscape.cs" />
+    <Compile Include="EventHandlers\Spawn.cs" />
+    <Compile Include="EventHandlers\RoundEnd.cs" />
+    <Compile Include="EventHandlers\RoundRestart.cs" />
+    <Compile Include="EventHandlers\ThrowGrenade.cs" />
+    <Compile Include="EventHandlers\SetServerName.cs" />
+    <Compile Include="EventHandlers\WaitingForPlayers.cs" />
+    <Compile Include="EventHandlers\RoundStart.cs" />
+    <Compile Include="PPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Files.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{298D128B-8699-44DB-B9AD-9FB7A05E5FAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RPPlugin</RootNamespace>
+    <AssemblyName>RPPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Smod2, Version=3.5.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Smod2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EventHandlers\PlayerDie.cs" />
+    <Compile Include="EventHandlers\RoundRestart.cs" />
+    <Compile Include="EventHandlers\PlayerPickupItem.cs" />
+    <Compile Include="EventHandlers\NicknameSet.cs" />
+    <Compile Include="EventHandlers\SceneChanged.cs" />
+    <Compile Include="EventHandlers\RoundStart.cs" />
+    <Compile Include="EventHandlers\PlayerCheckEscape.cs" />
+    <Compile Include="EventHandlers\CallCommand.cs" />
+    <Compile Include="EventHandlers\FixedUpdate.cs" />
+    <Compile Include="EventHandlers\PlayerHurt.cs" />
+    <Compile Include="EventHandlers\MedkitUse.cs" />
+    <Compile Include="EventHandlers\SummonVehicle.cs" />
+    <Compile Include="EventHandlers\SetServerName.cs" />
+    <Compile Include="EventHandlers\ElevatorUse.cs" />
+    <Compile Include="EventHandlers\SetRole.cs" />
+    <Compile Include="EventHandlers\WarheadChangeLever.cs" />
+    <Compile Include="EventHandlers\WaitingForPlayers.cs" />
+    <Compile Include="template.cs" />
+    <Compile Include="EventHandlers\Player106CreatePortal.cs" />
+    <Compile Include="RPPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
