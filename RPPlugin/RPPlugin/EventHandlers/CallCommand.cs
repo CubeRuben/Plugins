@@ -168,7 +168,9 @@ namespace RPPlugin.EventHandlers
                     GameObject.FindObjectOfType<ConfigFile>
                     break;*/
                 case "test":
+                    //this.plugin.Info(GameObject.FindObjectsOfType<Inventory>().Length.ToString());
                     this.plugin.ironBlyat.Create(((GameObject)ev.Player.GetGameObject()).transform.position, plugin);
+                    
                     //GameObject shoot = GameObject.Instantiate(, (ev.Player.GetGameObject()));
                     //((GameObject)ev.Player.GetGameObject()).GetComponent<WeaponManager>().Sho;
                     //GameObject.FindObjectOfType<SoundtrackManager>().PlayOverlay(1);

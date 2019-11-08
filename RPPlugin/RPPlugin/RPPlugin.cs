@@ -177,64 +177,8 @@ namespace RPPlugin
             //ironBlyat.AddComponent<Scripts.IronBlyat>();
             //ironBlyat.AddComponent<Rigidbody>();
             NetworkServer.Spawn(ironBlyat);
-            Pickup[] items = GameObject.FindObjectsOfType<Pickup>();
 
-            Pickup p90 = null;
-            Pickup flashbang = null;
-            Pickup mp7 = null;
-            Pickup ep11 = null;
-            Pickup usp = null;
-            Pickup com15 = null;
-
-            for (int i = 0; i < items.Length; i++)
-            {
-                switch (items[i].info.itemId)
-                {
-                    case (int)ItemType.P90:
-                        if (p90 == null)
-                        {
-                            p90 = items[i];
-                        }
-                        break;
-                    case (int)ItemType.FLASHBANG:
-                        if (flashbang == null)
-                        {
-                            flashbang = items[i];
-                        }
-                        break;
-                    case (int)ItemType.MP4:
-                        if (mp7 == null)
-                        {
-                            mp7 = items[i];
-                        }
-                        break;
-                    case (int)ItemType.E11_STANDARD_RIFLE:
-                        if (ep11 == null)
-                        {
-                            ep11 = items[i];
-                        }
-                        break;
-                    case (int)ItemType.USP:
-                        if (usp == null)
-                        {
-                            usp = items[i];
-                        }
-                        break;
-                    case (int)ItemType.COM15:
-                        if (com15 == null)
-                        {
-                            com15 = items[i];
-                        }
-                        break;
-                }
-            }
-
-            /*for (int i = 0; i < 100; i++)
-            {
-                NetworkServer.Spawn(flashbang.gameObject);
-            }*/
-           
-            SetTransformAndParent(ep11, new Vector3(0, 0, 0) + position, new Vector3(90, 0, 0), ironBlyat);
+            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(0, 0, 0) + position, new Vector3(90, 0, 0), ironBlyat);
         }
 
         public void Destroy()
@@ -242,10 +186,18 @@ namespace RPPlugin
 
         }
 
-        private void SetTransformAndParent(Pickup pickup, Vector3 pos, Vector3 rot, GameObject parent)
-        {
-            GameObject item = GameObject.Instantiate<GameObject>(pickup.gameObject, pos, Quaternion.Euler(rot), parent.transform);
-            item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        private void SetTransformAndParent(ItemType type, Vector3 pos, Vector3 rot, GameObject parent)
+        {   
+            GameObject item = GameObject.Instantiate<GameObject>(GameObject.FindObjectOfType<Inventory>().pickupPrefab, pos, Quaternion.Euler(rot), parent.transform);
+            item.GetComponent<Rigidbody>().isKinematic = true;
+            item.GetComponent<Pickup>().SetupPickup(new Pickup.PickupInfo {
+                durability = 0,
+                itemId = (int)type,
+                ownerPlayerID = 1,
+                position = pos,
+                rotation = Quaternion.Euler(rot),
+                weaponMods = new[] { 0, 0, 0 }
+            });
             NetworkServer.Spawn(item);
         }
     }
