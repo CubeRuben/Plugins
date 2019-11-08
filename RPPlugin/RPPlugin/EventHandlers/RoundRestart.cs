@@ -15,6 +15,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnRoundRestart(RoundRestartEvent ev)
         {
+            //Очистка всего
             //this.plugin.SCP106CanTeleportToPlayer = 0;
             this.plugin.idPlayersForTermination.Clear();
             this.plugin.rottingPlayers.Clear();

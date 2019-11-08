@@ -15,7 +15,10 @@ namespace RPPlugin.EventHandlers
 
         public void OnMedkitUse(PlayerMedkitUseEvent ev)
         {
-            bool removed = this.plugin.bleedingPlayers.Remove(ev.Player.PlayerId);
+            //Лечение
+            bool removed = false;
+            removed = this.plugin.bleedingPlayers.Remove(ev.Player.PlayerId);
+            removed = this.plugin.rottingPlayers.Remove(ev.Player.PlayerId);
             if (removed)
             {
                 ev.Player.PersonalClearBroadcasts();

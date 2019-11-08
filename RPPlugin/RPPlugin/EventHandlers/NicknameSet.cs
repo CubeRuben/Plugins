@@ -18,8 +18,10 @@ namespace RPPlugin.EventHandlers
 
         public void OnNicknameSet(PlayerNicknameSetEvent ev)
         {
+            //Игнорирование сервера
             if (ev.Player.IpAddress != "localClient")
             {
+                //Установка ника
                 ev.Nickname += " [" + this.plugin.playersNames[this.plugin.random.Next(this.plugin.playersNames.Length)] + "/" + this.plugin.random.Next(10).ToString() + this.plugin.random.Next(10).ToString() + this.plugin.random.Next(10).ToString() + this.plugin.random.Next(10).ToString() + "]";
             }
         }

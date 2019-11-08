@@ -4,6 +4,8 @@ using Smod2.API;
 using Smod2.EventHandlers;
 
 using UnityEngine;
+using UnityEngine.Networking;
+
 
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,9 @@ namespace RPPlugin
         //Комната деда
         public Room scp106Room;
 
+        //Положение зоны вызова МОГа в интеркоме
+        public Vector intercom;
+
         //Для спавна МОГа
         public bool allowRespawnMTF = false;
 
@@ -44,11 +49,11 @@ namespace RPPlugin
         //Массив игроков с гниением
         public List<int> rottingPlayers = new List<int>();
 
-        //Положение зоны вызова МОГа в интеркоме
-        public Vector intercom;
-
         //Поднятые трупы
         public List<PickedUpRagdoll> pickedUpRagdolls = new List<PickedUpRagdoll>();
+
+        //IronBlyat
+        public IronBlyat ironBlyat = new IronBlyat();
 
         public override void OnEnable()
         {
@@ -161,4 +166,88 @@ namespace RPPlugin
         public int playerId;
         public Ragdoll ragdoll;
     }
+
+    public class IronBlyat
+    {
+        public GameObject ironBlyat;
+
+        public void Create(Vector3 position, RPPlugin plugin)
+        {
+            ironBlyat = GameObject.Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule), position, Quaternion.Euler(0, 0, 0));
+            //ironBlyat.AddComponent<Scripts.IronBlyat>();
+            //ironBlyat.AddComponent<Rigidbody>();
+            NetworkServer.Spawn(ironBlyat);
+            Pickup[] items = GameObject.FindObjectsOfType<Pickup>();
+
+            Pickup p90 = null;
+            Pickup flashbang = null;
+            Pickup mp7 = null;
+            Pickup ep11 = null;
+            Pickup usp = null;
+            Pickup com15 = null;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                switch (items[i].info.itemId)
+                {
+                    case (int)ItemType.P90:
+                        if (p90 == null)
+                        {
+                            p90 = items[i];
+                        }
+                        break;
+                    case (int)ItemType.FLASHBANG:
+                        if (flashbang == null)
+                        {
+                            flashbang = items[i];
+                        }
+                        break;
+                    case (int)ItemType.MP4:
+                        if (mp7 == null)
+                        {
+                            mp7 = items[i];
+                        }
+                        break;
+                    case (int)ItemType.E11_STANDARD_RIFLE:
+                        if (ep11 == null)
+                        {
+                            ep11 = items[i];
+                        }
+                        break;
+                    case (int)ItemType.USP:
+                        if (usp == null)
+                        {
+                            usp = items[i];
+                        }
+                        break;
+                    case (int)ItemType.COM15:
+                        if (com15 == null)
+                        {
+                            com15 = items[i];
+                        }
+                        break;
+                }
+            }
+
+            /*for (int i = 0; i < 100; i++)
+            {
+                NetworkServer.Spawn(flashbang.gameObject);
+            }*/
+           
+            SetTransformAndParent(ep11, new Vector3(0, 0, 0) + position, new Vector3(90, 0, 0), ironBlyat);
+        }
+
+        public void Destroy()
+        {
+
+        }
+
+        private void SetTransformAndParent(Pickup pickup, Vector3 pos, Vector3 rot, GameObject parent)
+        {
+            GameObject item = GameObject.Instantiate<GameObject>(pickup.gameObject, pos, Quaternion.Euler(rot), parent.transform);
+            item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            NetworkServer.Spawn(item);
+        }
+    }
+
 }

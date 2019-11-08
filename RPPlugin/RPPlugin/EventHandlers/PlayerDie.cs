@@ -22,6 +22,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnPlayerDie(PlayerDeathEvent ev)
         {
+            //Удаление игрока из массива гниющих и кровоточущих
             this.plugin.bleedingPlayers.Remove(ev.Player.PlayerId);
             this.plugin.rottingPlayers.Remove(ev.Player.PlayerId);
 

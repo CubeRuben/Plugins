@@ -4,6 +4,7 @@ using Smod2.Events;
 using Smod2.API;
 
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Networking;
 
 namespace RPPlugin.EventHandlers
@@ -70,7 +71,7 @@ namespace RPPlugin.EventHandlers
                 {
                     GameObject playerGameObject = (GameObject)player.GetGameObject();
 
-                    this.plugin.pickedUpRagdolls[i].ragdoll.transform.position = playerGameObject.transform.position;
+                    //this.plugin.pickedUpRagdolls[i].ragdoll.transform.position = playerGameObject.transform.position;
                     GameObject ragdoll = GameObject.Instantiate<GameObject>(this.plugin.pickedUpRagdolls[i].ragdoll.gameObject, playerGameObject.transform.position + new Vector3(Mathf.Sin(this.plugin.pickedUpRagdolls[i].ragdoll.transform.rotation.eulerAngles.y * Mathf.PI / 180) * -0.3f, -1.0f, Mathf.Cos(this.plugin.pickedUpRagdolls[i].ragdoll.transform.rotation.eulerAngles.y * Mathf.PI / 180) * -0.3f), Quaternion.Euler(playerGameObject.transform.rotation.eulerAngles));
                     //GameObject ragdoll = GameObject.Instantiate<GameObject>(this.plugin.ragdolls[this.plugin.pickedUpRagdolls[i].ragdollId], playerGO.transform.position + new Vector3(Mathf.Sin(this.plugin.ragdolls[this.plugin.pickedUpRagdolls[i].ragdollId].transform.rotation.eulerAngles.y * Mathf.PI / 180 + 45) * 0.25f /*+ this.plugin.ragdolls[this.plugin.pickedUpRagdolls[i].ragdollId].transform.localScale.y / 2*/, 0.35f, Mathf.Cos(this.plugin.ragdolls[this.plugin.pickedUpRagdolls[i].ragdollId].transform.rotation.eulerAngles.y * Mathf.PI / 180 + 45) * 0.25f /*+ this.plugin.ragdolls[this.plugin.pickedUpRagdolls[i].ragdollId].transform.localScale.y / 2*/), Quaternion.Euler(playerGO.transform.rotation.eulerAngles + new Vector3(0, 0, 90)));*/
                     NetworkServer.Spawn(ragdoll);
@@ -78,6 +79,15 @@ namespace RPPlugin.EventHandlers
                     this.plugin.pickedUpRagdolls[i].ragdoll = ragdoll.GetComponent<Ragdoll>();
                 }
             }
+            //this.plugin.Info(GameObject.FindObjectsOfType<SoundtrackManager>().Length.ToString());
+
+            /*SoundtrackManager.Track[] tracks = GameObject.FindObjectOfType<SoundtrackManager>().overlayTracks;
+            for (int i = 0; i < tracks.Length; i++)
+            {
+                this.plugin.Info(tracks[i].source.clip.ToString());
+            }*/
+            
+            
         }
     }
 }

@@ -24,6 +24,7 @@ namespace RPPlugin.EventHandlers
             //Обработка комманд в консоли
             switch (ev.Command.Split(' ')[0])
             {
+                //Вызов МОГа
                 case "recallmtf":
                     if ((!this.plugin.allowRespawnMTF) && ((ev.Player.TeamRole.Team == Smod2.API.Team.NINETAILFOX) || (ev.Player.TeamRole.Team == Smod2.API.Team.SCIENTIST) || (ev.Player.TeamRole.Team == Smod2.API.Team.CLASSD)))
                     {
@@ -44,6 +45,7 @@ namespace RPPlugin.EventHandlers
                         ev.ReturnMessage = "Вызов запрещён";
                     }
                     break;
+                //Побег за SCP
                 case "escape":
                     if ((ev.Player.GetPosition().x >= 174) && (ev.Player.GetPosition().x <= 186.63) && (ev.Player.GetPosition().y >= 983) && (ev.Player.GetPosition().y <= 990) && (ev.Player.GetPosition().z >= 35.34) && (ev.Player.GetPosition().z <= 40.46))
                     {
@@ -73,6 +75,7 @@ namespace RPPlugin.EventHandlers
                         ev.ReturnMessage = "Вы далеко от пункта побега";
                     }
                     break;
+                //Поднятие тела
                 case "pickupbody":
                     ev.ReturnMessage = "Рядом нет трупов";
 
@@ -136,6 +139,7 @@ namespace RPPlugin.EventHandlers
                     }
                 pickupbodyend:;
                     break;
+                //Сбрасывание тела
                 case "dropbody":
                     ev.ReturnMessage = "Вы не несёте труп";
                     for (int i = 0; i < this.plugin.pickedUpRagdolls.Count; i++)
@@ -163,6 +167,12 @@ namespace RPPlugin.EventHandlers
                 /*case "test":
                     GameObject.FindObjectOfType<ConfigFile>
                     break;*/
+                case "test":
+                    this.plugin.ironBlyat.Create(((GameObject)ev.Player.GetGameObject()).transform.position, plugin);
+                    //GameObject shoot = GameObject.Instantiate(, (ev.Player.GetGameObject()));
+                    //((GameObject)ev.Player.GetGameObject()).GetComponent<WeaponManager>().Sho;
+                    //GameObject.FindObjectOfType<SoundtrackManager>().PlayOverlay(1);
+                    break;
             }
         }
     }

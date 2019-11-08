@@ -19,8 +19,10 @@ namespace RPPlugin.EventHandlers
 
         public void On106CreatePortal(Player106CreatePortalEvent ev)
         {
+            //Массив лифтов
             List<Elevator> allElevators = this.plugin.PluginManager.Server.Map.GetElevators();
 
+            //Проверка на ближайшие лифты
             for (int i = 0; i < allElevators.Count; i++)
             {
                 List<Vector> elevators = allElevators[i].GetPositions();

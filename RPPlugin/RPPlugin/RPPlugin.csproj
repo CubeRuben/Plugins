@@ -43,6 +43,14 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
@@ -72,6 +80,7 @@
     <Compile Include="EventHandlers\SetRole.cs" />
     <Compile Include="EventHandlers\WarheadChangeLever.cs" />
     <Compile Include="EventHandlers\WaitingForPlayers.cs" />
+    <Compile Include="Scripts\IronBlyat.cs" />
     <Compile Include="template.cs" />
     <Compile Include="EventHandlers\Player106CreatePortal.cs" />
     <Compile Include="RPPlugin.cs" />
