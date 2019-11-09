@@ -48,6 +48,11 @@ namespace RPPlugin.EventHandlers
                 this.plugin.rottingPlayers.Add(ev.Player.PlayerId);
             }
         founded:;
+
+            if ((ev.Attacker.TeamRole.Role == Role.SCP_939_53) || (ev.Attacker.TeamRole.Role == Role.SCP_939_89))
+            {
+                ev.Attacker.AddHealth(50);
+            }
         }
     }
 }

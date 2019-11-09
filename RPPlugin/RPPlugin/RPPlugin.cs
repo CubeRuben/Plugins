@@ -5,6 +5,7 @@ using Smod2.EventHandlers;
 
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.AI;
 
 
 using System;
@@ -39,6 +40,10 @@ namespace RPPlugin
 
         //Для спавна МОГа
         public bool allowRespawnMTF = false;
+        public DateTime whenSummoned = DateTime.Now;
+
+        //Для SCP-079
+        public bool MTFADisabled = false;
 
         //Массив игроков, которые признаны на уничтожение
         public List<int> idPlayersForTermination = new List<int>();
@@ -78,6 +83,8 @@ namespace RPPlugin
         void RegEventHandlers()
         {
             this.AddEventHandler(typeof(IEventHandlerCallCommand), new EventHandlers.CallCommand(this));
+
+            this.AddEventHandler(typeof(IEventHandlerCassieTeamAnnouncement), new EventHandlers.CassieTeamAnnouncement(this));
 
             this.AddEventHandler(typeof(IEventHandlerElevatorUse), new EventHandlers.ElevatorUse(this));
 
@@ -173,12 +180,20 @@ namespace RPPlugin
 
         public void Create(Vector3 position, RPPlugin plugin)
         {
-            ironBlyat = GameObject.Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule), position, Quaternion.Euler(0, 0, 0));
-            //ironBlyat.AddComponent<Scripts.IronBlyat>();
-            //ironBlyat.AddComponent<Rigidbody>();
+            GameObject mesh = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            mesh.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            ironBlyat = GameObject.Instantiate<GameObject>(mesh, position, Quaternion.Euler(0, 0, 0));
+            ironBlyat.AddComponent<NavMeshAgent>();
+            ironBlyat.AddComponent<Scripts.IronBlyat>();
+            ironBlyat.AddComponent<Rigidbody>();
+            ironBlyat.GetComponent<Rigidbody>().isKinematic = true;
             NetworkServer.Spawn(ironBlyat);
 
-            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(0, 0, 0) + position, new Vector3(90, 0, 0), ironBlyat);
+            SetTransformAndParent(ItemType.FLASHBANG, new Vector3(0, 0, 0) + position, new Vector3(0, 0, 0), ironBlyat);
+            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(0.2f, 0, 0.2f) + position, new Vector3(90, 90, 0), ironBlyat);
+            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(-0.2f, 0, 0.2f) + position, new Vector3(90, -90, 0), ironBlyat);
+            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(0.4f, 0, 0.2f) + position, new Vector3(90, 90, 0), ironBlyat);
+            SetTransformAndParent(ItemType.E11_STANDARD_RIFLE, new Vector3(-0.4f, 0, 0.2f) + position, new Vector3(90, -90, 0), ironBlyat);
         }
 
         public void Destroy()

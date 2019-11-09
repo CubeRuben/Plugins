@@ -17,7 +17,8 @@ namespace RPPlugin.EventHandlers
         }
 
         public void OnSceneChanged(SceneChangedEvent ev)
-        { 
+        {
+            
             
         }
     }

@@ -36,7 +36,7 @@
     </Reference>
     <Reference Include="Smod2, Version=3.5.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Smod2.dll</HintPath>
+      <HintPath>C:\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Smod2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +78,7 @@
     <Compile Include="EventHandlers\SetServerName.cs" />
     <Compile Include="EventHandlers\ElevatorUse.cs" />
     <Compile Include="EventHandlers\SetRole.cs" />
+    <Compile Include="EventHandlers\CassieTeamAnnouncement.cs" />
     <Compile Include="EventHandlers\WarheadChangeLever.cs" />
     <Compile Include="EventHandlers\WaitingForPlayers.cs" />
     <Compile Include="Scripts\IronBlyat.cs" />

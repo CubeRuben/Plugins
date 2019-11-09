@@ -2,6 +2,8 @@
 using Smod2.EventHandlers;
 using Smod2.Events;
 
+using System;
+
 namespace RPPlugin.EventHandlers
 {
     class SummonVehicle : IEventHandlerSummonVehicle
@@ -15,13 +17,16 @@ namespace RPPlugin.EventHandlers
 
         public void OnSummonVehicle(SummonVehicleEvent ev)
         {
-            if (!this.plugin.allowRespawnMTF)
+            if (this.plugin.whenSummoned < DateTime.Now)
             {
-                ev.AllowSummon = false;
-            }
-            else
-            {
-                this.plugin.allowRespawnMTF = false;
+                if (!this.plugin.allowRespawnMTF)
+                {
+                    ev.AllowSummon = false;
+                }
+                else
+                {
+                    this.plugin.allowRespawnMTF = false;
+                }
             }
         }
     }

@@ -32,6 +32,7 @@ namespace RPPlugin.EventHandlers
                         {
                             this.plugin.Round.MTFRespawn(false);
                             this.plugin.allowRespawnMTF = true;
+                            this.plugin.whenSummoned = DateTime.Now.AddMinutes(1);
                             this.plugin.PluginManager.Server.Map.AnnounceCustomMessage("MTFUNIT WILL BE IN FACILITY IN 2 MINUTES");
                             ev.ReturnMessage = "Вы вызвали мог";
                         }
@@ -151,26 +152,94 @@ namespace RPPlugin.EventHandlers
                         }
                     }
                     break;
-                /*case "cassie":
+                //Портал в карман.измерение
+                case "portaltopd":
+                    ev.ReturnMessage = "Вы не SCP-106";
+                    if (ev.Player.TeamRole.Role == Role.SCP_106)
+                    {
+                        GameObject player = (GameObject)ev.Player.GetGameObject();
+                        player.GetComponent<Scp106PlayerScript>().NetworkportalPosition = new Vector3(0, -2001, 0);
+                        ev.ReturnMessage = "Портал в карманном измерении создан";
+                    }
+                    break;
+                //Кушать трупы за SCP-939
+                case "eatbody":
+                    ev.ReturnMessage = "Вы не SCP-939";
+                    if ((ev.Player.TeamRole.Role == Role.SCP_939_53) || (ev.Player.TeamRole.Role == Role.SCP_939_89))
+                    {
+                        ev.ReturnMessage = "Рядом нет трупов";
+                        Ragdoll[] ragdoll = GameObject.FindObjectsOfType<Ragdoll>();
+                        for (int i = 0; i < ragdoll.Length; i++)
+                        {
+                            if (Vector3.Distance(((GameObject)ev.Player.GetGameObject()).transform.position, ragdoll[i].transform.position) <= 2)
+                            {
+                                NetworkServer.Destroy(ragdoll[i].gameObject);
+                                ev.Player.AddHealth(80);
+                                ev.ReturnMessage = "Вы покушали";
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                //Cassie для SCP-079
+                case "cassie":
                     ev.ReturnMessage = "Вы не SCP-079";
                     if (ev.Player.TeamRole.Role == Role.SCP_079)
                     {
-                        ev.ReturnMessage = "У вас не хватает уровня";
+                        ev.ReturnMessage = "У вас не хватает уровня\nНужен 3 или более";
                         if (ev.Player.Scp079Data.Level >= 3)
                         {
                             ev.ReturnMessage = "У вас мало энергии";
-                            if (ev.Player.Scp079Data.AP >= 100)
-                            this.plugin.Server.Map.AnnounceCustomMessage("");
+                            string[] args = ev.Command.Split(' ');
+                            string msg = "";
+                            int count = 0;
+
+                            for (int i = 1; i < args.Length; i++)
+                            {
+                                msg += args[i];
+                                count += 15;
+                            }
+
+                            if (ev.Player.Scp079Data.AP >= count)
+                            {
+                                ev.Player.Scp079Data.AP += count;
+                                this.plugin.Server.Map.AnnounceCustomMessage(msg);
+                            }
                         }
                     }
-                    break;*/
+                    break;
+                //Убрвть оповещение за SCP-079
+                case "removemtfa":
+                    ev.ReturnMessage = "Вы не SCP-079";
+                    if (ev.Player.TeamRole.Role == Role.SCP_079)
+                    {
+                        ev.ReturnMessage = "У вас не хватает уровня\nНужен 2 или более";
+                        if (ev.Player.Scp079Data.Level >= 2)
+                        {
+                            ev.ReturnMessage = "У вас мало энергии\nНужно 50 или более";
+                            if ((ev.Player.Scp079Data.AP >= 50) && !this.plugin.MTFADisabled && this.plugin.allowRespawnMTF)
+                            {
+                                ev.Player.Scp079Data.AP -= 50;
+                                this.plugin.MTFADisabled = true;
+                                ev.ReturnMessage = "Вы отключили оповещение";
+                            }
+                        }
+                    }
+                    break;
                 /*case "test":
                     GameObject.FindObjectOfType<ConfigFile>
                     break;*/
                 case "test":
+
                     //this.plugin.Info(GameObject.FindObjectsOfType<Inventory>().Length.ToString());
-                    this.plugin.ironBlyat.Create(((GameObject)ev.Player.GetGameObject()).transform.position, plugin);
-                    
+                    /*this.plugin.ironBlyat.Create(((GameObject)ev.Player.GetGameObject()).transform.position, plugin);
+
+                    Scp939PlayerScript[] players = GameObject.FindObjectsOfType<Scp939PlayerScript>();
+                    for (int i = 0; i < players.Length; i++)
+                    {
+                        this.plugin.Info(players[i].transform.position.ToString());
+                    }*/
+                    //this.plugin.Info();
                     //GameObject shoot = GameObject.Instantiate(, (ev.Player.GetGameObject()));
                     //((GameObject)ev.Player.GetGameObject()).GetComponent<WeaponManager>().Sho;
                     //GameObject.FindObjectOfType<SoundtrackManager>().PlayOverlay(1);

@@ -7,23 +7,60 @@ namespace RPPlugin.Scripts
     {
         NavMeshAgent agent;
         Scp939PlayerScript[] players;
-
+        Transform target;
 
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             players = GameObject.FindObjectsOfType<Scp939PlayerScript>();
+            target = null;
         }
 
-        void FixedUpdate()
+        void Update()
         {
-            float distance = Vector3.Distance(players[1].gameObject.transform.position, transform.position);
-
-            if (distance <= 10)
+            players = GameObject.FindObjectsOfType<Scp939PlayerScript>();
+            /*if (target != null)
             {
-                agent.SetDestination(players[1].gameObject.transform.position);
-                
+                if (Vector3.Distance(target.transform.position, transform.position) > 5)
+                {
+                    for (int i = 0; i < players.Length; i++)
+                    {
+                        if (Vector3.Distance(players[i].gameObject.transform.position, transform.position) <= 5)
+                        {
+                            target = players[i].gameObject.transform;
+                            break;
+                        }
+
+                        target = null;
+                    }
+                }
             }
+            else
+            {
+                for (int i = 0; i < players.Length; i++)
+                {
+                    if (Vector3.Distance(players[i].gameObject.transform.position, transform.position) <= 5)
+                    {
+                        target = players[i].gameObject.transform;
+                        break;
+                    }
+
+                    target = null;
+                }
+            }*/
+
+            /*if (target != null)
+            {*/
+            agent.destination = players[0].transform.position;
+            /*for (int i = 0; i < players.Length; i++)
+            {
+                if (Vector3.Distance(target.transform.position, transform.position) <= 5)
+                {
+                   
+
+                }
+            }*/
+            //}
             //transform.position += new Vector3(0, 0.1f, 0);
         }
 

@@ -25,7 +25,7 @@ namespace RPPlugin.EventHandlers
             }*/
 
             //Признание Д на уничтожение
-            if ((ev.Player.TeamRole.Role == Role.CLASSD) && ((ev.Item.ItemType == ItemType.COM15) || (ev.Item.ItemType == ItemType.LOGICER) || (ev.Item.ItemType == ItemType.MP4) || (ev.Item.ItemType == ItemType.E11_STANDARD_RIFLE) || (ev.Item.ItemType == ItemType.MICROHID) || (ev.Item.ItemType == ItemType.P90) || (ev.Item.ItemType == ItemType.USP) || (ev.Item.ItemType == ItemType.FRAG_GRENADE) || (ev.Item.ItemType == ItemType.FLASHBANG)))
+            if ((ev.Player.TeamRole.Role == Role.CLASSD) && ((ev.Item.ItemType == ItemType.COM15) || (ev.Item.ItemType == ItemType.LOGICER) || (ev.Item.ItemType == ItemType.MP7) || (ev.Item.ItemType == ItemType.E11_STANDARD_RIFLE) || (ev.Item.ItemType == ItemType.MICROHID) || (ev.Item.ItemType == ItemType.P90) || (ev.Item.ItemType == ItemType.USP) || (ev.Item.ItemType == ItemType.FRAG_GRENADE) || (ev.Item.ItemType == ItemType.FLASHBANG)))
             {
                 for (int i = 0; i < this.plugin.idPlayersForTermination.Count; i++)
                 {
