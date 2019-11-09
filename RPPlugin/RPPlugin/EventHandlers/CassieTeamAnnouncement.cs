@@ -16,11 +16,11 @@ namespace RPPlugin.EventHandlers
 
         public void OnCassieTeamAnnouncement(CassieTeamAnnouncementEvent ev)
         {
-            if (this.plugin.MTFADisabled)
+            /*if (this.plugin.MTFADisabled)
             {
-                ev.
+                ev.Allow = false;
                 this.plugin.MTFADisabled = false;
-            }
+            }*/
         }
     }
 }

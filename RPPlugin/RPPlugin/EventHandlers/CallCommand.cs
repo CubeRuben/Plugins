@@ -187,7 +187,7 @@ namespace RPPlugin.EventHandlers
                     if (ev.Player.TeamRole.Role == Role.SCP_079)
                     {
                         ev.ReturnMessage = "У вас не хватает уровня\nНужен 3 или более";
-                        if (ev.Player.Scp079Data.Level >= 3)
+                        if (ev.Player.Scp079Data.Level >= 2)
                         {
                             ev.ReturnMessage = "У вас мало энергии";
                             string[] args = ev.Command.Split(' ');
@@ -204,24 +204,29 @@ namespace RPPlugin.EventHandlers
                             {
                                 ev.Player.Scp079Data.AP += count;
                                 this.plugin.Server.Map.AnnounceCustomMessage(msg);
+                                ev.ReturnMessage = "CASSIE сообщение успешно создано";
                             }
                         }
                     }
                     break;
-                //Убрвть оповещение за SCP-079
+                //Убрать оповещение за SCP-079
                 case "removemtfa":
                     ev.ReturnMessage = "Вы не SCP-079";
                     if (ev.Player.TeamRole.Role == Role.SCP_079)
                     {
                         ev.ReturnMessage = "У вас не хватает уровня\nНужен 2 или более";
-                        if (ev.Player.Scp079Data.Level >= 2)
+                        if (ev.Player.Scp079Data.Level >= 1)
                         {
-                            ev.ReturnMessage = "У вас мало энергии\nНужно 50 или более";
-                            if ((ev.Player.Scp079Data.AP >= 50) && !this.plugin.MTFADisabled && this.plugin.allowRespawnMTF)
+                            ev.ReturnMessage = "В данный момент нет возможности";
+                            if (!this.plugin.MTFADisabled && this.plugin.allowRespawnMTF)
                             {
-                                ev.Player.Scp079Data.AP -= 50;
-                                this.plugin.MTFADisabled = true;
-                                ev.ReturnMessage = "Вы отключили оповещение";
+                                ev.ReturnMessage = "У вас мало энергии\nНужно 50 или более";
+                                if (ev.Player.Scp079Data.AP >= 50)
+                                {
+                                    ev.Player.Scp079Data.AP -= 50;
+                                    this.plugin.MTFADisabled = true;
+                                    ev.ReturnMessage = "Вы отключили оповещение";
+                                }
                             }
                         }
                     }
@@ -230,7 +235,7 @@ namespace RPPlugin.EventHandlers
                     GameObject.FindObjectOfType<ConfigFile>
                     break;*/
                 case "test":
-
+                    //GameObject.FindObjectOfType<MTFRespawn>().respawnCooldown = Convert.ToInt32(ev.Command.Split(' ')[1]);
                     //this.plugin.Info(GameObject.FindObjectsOfType<Inventory>().Length.ToString());
                     /*this.plugin.ironBlyat.Create(((GameObject)ev.Player.GetGameObject()).transform.position, plugin);
 
