@@ -183,7 +183,6 @@ namespace RPPlugin
             GameObject mesh = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             mesh.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             ironBlyat = GameObject.Instantiate<GameObject>(mesh, position, Quaternion.Euler(0, 0, 0));
-            ironBlyat.AddComponent<NavMeshAgent>();
             ironBlyat.AddComponent<Scripts.IronBlyat>();
             ironBlyat.AddComponent<Rigidbody>();
             ironBlyat.GetComponent<Rigidbody>().isKinematic = true;
