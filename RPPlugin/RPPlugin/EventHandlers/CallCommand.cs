@@ -33,8 +33,8 @@ namespace RPPlugin.EventHandlers
                             this.plugin.Round.MTFRespawn(false);
                             this.plugin.allowRespawnMTF = true;
                             this.plugin.whenSummoned = DateTime.Now.AddMinutes(1);
-                            this.plugin.PluginManager.Server.Map.AnnounceCustomMessage("MTFUNIT WILL BE IN FACILITY IN 2 MINUTES");
-                            ev.ReturnMessage = "Вы вызвали мог";
+                            this.plugin.PluginManager.Server.Map.AnnounceCustomMessage(",MTF will arrive at the complex in 2 minutes.Expect any help.)",
+                            ev.ReturnMessage = "Вы вызвали Мобильную Оперативную Группу. Ожидайте помощи.");
                         }
                         else
                         {
