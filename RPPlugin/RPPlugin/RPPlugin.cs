@@ -174,6 +174,7 @@ namespace RPPlugin
         public Ragdoll ragdoll;
     }
 
+    //Класс IronBlyat
     public class IronBlyat
     {
         public GameObject ironBlyat;
