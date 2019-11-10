@@ -17,7 +17,7 @@ namespace RPPlugin.EventHandlers
 
         public void OnSummonVehicle(SummonVehicleEvent ev)
         {
-            /*if (this.plugin.whenSummoned < DateTime.Now)
+            if (this.plugin.whenSummoned < DateTime.Now)
             {
                 if (!this.plugin.allowRespawnMTF)
                 {
@@ -27,7 +27,7 @@ namespace RPPlugin.EventHandlers
                 {
                     this.plugin.allowRespawnMTF = false;
                 }
-            }*/
+            }
         }
     }
 }

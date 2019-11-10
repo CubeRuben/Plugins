@@ -196,13 +196,13 @@ namespace RPPlugin.EventHandlers
 
                             for (int i = 1; i < args.Length; i++)
                             {
-                                msg += args[i];
+                                msg += " " + args[i];
                                 count += 15;
                             }
 
                             if (ev.Player.Scp079Data.AP >= count)
                             {
-                                ev.Player.Scp079Data.AP += count;
+                                ev.Player.Scp079Data.AP -= count;
                                 this.plugin.Server.Map.AnnounceCustomMessage(msg);
                                 ev.ReturnMessage = "CASSIE сообщение успешно создано";
                             }
